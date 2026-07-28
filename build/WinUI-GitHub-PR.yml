@@ -35,11 +35,23 @@ parameters:
   displayName: "Run Static Analysis (e.g., PREFast, APIScan)"
   type: boolean
   default: false
+- name: useBuildOutputFromBuildId
+  displayName: "Optional build ID to reuse for build outputs"
+  type: string
+  default: ''
+- name: useBuildOutputFromPipeline
+  displayName: "Optional pipeline ID for reused build outputs"
+  type: string
+  default: ''
 
 variables:
 - template: AzurePipelinesTemplates\WindowsAppSDK-Versions.yml@WindowsAppSDKVersionConfig
 - template: build\AzurePipelinesTemplates\WinUI-BuildVariables.yml@WinUIInternal
 - group: WinUI-Variable-Library
+- name: useBuildOutputFromBuildId
+  value: ${{ parameters.useBuildOutputFromBuildId }}
+- name: useBuildOutputFromPipeline
+  value: ${{ parameters.useBuildOutputFromPipeline }}
 - name: WindowsContainerImage
   value: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 
