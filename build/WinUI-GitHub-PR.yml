@@ -36,13 +36,17 @@ parameters:
   type: boolean
   default: false
 - name: useBuildOutputFromBuildId
-  displayName: "Optional build ID to reuse for build outputs"
+  displayName: "Build output reuse mode or build ID"
   type: string
-  default: ''
+  default: 'latest'
 - name: useBuildOutputFromPipeline
   displayName: "Optional pipeline ID for reused build outputs"
   type: string
   default: ''
+- name: useBuildOutputFromBranch
+  displayName: "Optional branch for latestFromBranch build output reuse"
+  type: string
+  default: 'refs/heads/winui3/main'
 
 variables:
 - template: AzurePipelinesTemplates\WindowsAppSDK-Versions.yml@WindowsAppSDKVersionConfig
@@ -52,6 +56,8 @@ variables:
   value: ${{ parameters.useBuildOutputFromBuildId }}
 - name: useBuildOutputFromPipeline
   value: ${{ parameters.useBuildOutputFromPipeline }}
+- name: useBuildOutputFromBranch
+  value: ${{ parameters.useBuildOutputFromBranch }}
 - name: WindowsContainerImage
   value: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 
