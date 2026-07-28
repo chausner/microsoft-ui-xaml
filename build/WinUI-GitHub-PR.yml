@@ -181,4 +181,4 @@ extends:
     - ${{ if eq(parameters.runFullValidation, true) }}:
       - template: build\AzurePipelinesTemplates\WinUI-RunTests-Stage.yml@WinUIInternal
         parameters:
-          pipelineKind: QuickPR
+          pipelineKind: GitHubPR
