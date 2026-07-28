@@ -35,29 +35,10 @@ parameters:
   displayName: "Run Static Analysis (e.g., PREFast, APIScan)"
   type: boolean
   default: false
-- name: useBuildOutputFromBuildId
-  displayName: "Build output reuse mode or build ID"
-  type: string
-  default: 'latest'
-- name: useBuildOutputFromPipeline
-  displayName: "Optional pipeline ID for reused build outputs"
-  type: string
-  default: ''
-- name: useBuildOutputFromBranch
-  displayName: "Optional branch for latestFromBranch build output reuse"
-  type: string
-  default: 'refs/heads/winui3/main'
-
 variables:
 - template: AzurePipelinesTemplates\WindowsAppSDK-Versions.yml@WindowsAppSDKVersionConfig
 - template: build\AzurePipelinesTemplates\WinUI-BuildVariables.yml@WinUIInternal
 - group: WinUI-Variable-Library
-- name: useBuildOutputFromBuildId
-  value: ${{ parameters.useBuildOutputFromBuildId }}
-- name: useBuildOutputFromPipeline
-  value: ${{ parameters.useBuildOutputFromPipeline }}
-- name: useBuildOutputFromBranch
-  value: ${{ parameters.useBuildOutputFromBranch }}
 - name: WindowsContainerImage
   value: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 
